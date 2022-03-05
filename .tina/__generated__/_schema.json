@@ -28,7 +28,7 @@
       ]
     },
     {
-      "label": "Blog Posts",
+      "label": "Writing",
       "name": "post",
       "path": "content/post",
       "fields": [
@@ -42,13 +42,10 @@
           ]
         },
         {
-          "type": "string",
-          "label": "Blog Post Body",
           "name": "body",
+          "label": "Blog Post Body",
+          "type": "rich-text",
           "isBody": true,
-          "ui": {
-            "component": "textarea"
-          },
           "namespace": [
             "post",
             "body"
@@ -57,6 +54,91 @@
       ],
       "namespace": [
         "post"
+      ]
+    },
+    {
+      "label": "Music",
+      "name": "music",
+      "path": "content/music",
+      "fields": [
+        {
+          "type": "string",
+          "label": "Title",
+          "name": "title",
+          "namespace": [
+            "music",
+            "title"
+          ]
+        },
+        {
+          "name": "audioUrl",
+          "label": "Audio URL",
+          "type": "image",
+          "namespace": [
+            "music",
+            "audioUrl"
+          ]
+        },
+        {
+          "name": "imageUrl",
+          "label": "Image URL",
+          "type": "image",
+          "namespace": [
+            "music",
+            "imageUrl"
+          ]
+        },
+        {
+          "name": "body",
+          "label": "Blog Post Body",
+          "type": "rich-text",
+          "isBody": true,
+          "namespace": [
+            "music",
+            "body"
+          ]
+        }
+      ],
+      "namespace": [
+        "music"
+      ]
+    },
+    {
+      "label": "Photos",
+      "name": "photo",
+      "path": "content/photos",
+      "fields": [
+        {
+          "type": "string",
+          "label": "Title",
+          "name": "title",
+          "namespace": [
+            "photo",
+            "title"
+          ]
+        },
+        {
+          "name": "photoCollectionUrl",
+          "label": "Photo Collection URL",
+          "type": "image",
+          "namespace": [
+            "photo",
+            "photoCollectionUrl"
+          ]
+        },
+        {
+          "name": "body",
+          "label": "Blog Post Body",
+          "type": "rich-text",
+          "isBody": true,
+          "namespace": [
+            "photo",
+            "body"
+          ]
+        }
+      ],
+      "namespace": [
+        "photo"
       ]
     }
   ]

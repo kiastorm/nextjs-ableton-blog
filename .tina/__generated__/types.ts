@@ -71,6 +71,10 @@ export type Query = {
   getPageList: PageConnection;
   getPostDocument: PostDocument;
   getPostList: PostConnection;
+  getMusicDocument: MusicDocument;
+  getMusicList: MusicConnection;
+  getPhotoDocument: PhotoDocument;
+  getPhotoList: PhotoConnection;
 };
 
 
@@ -123,6 +127,32 @@ export type QueryGetPostListArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
+
+export type QueryGetMusicDocumentArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryGetMusicListArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
+
+export type QueryGetPhotoDocumentArgs = {
+  relativePath?: InputMaybe<Scalars['String']>;
+};
+
+
+export type QueryGetPhotoListArgs = {
+  before?: InputMaybe<Scalars['String']>;
+  after?: InputMaybe<Scalars['String']>;
+  first?: InputMaybe<Scalars['Int']>;
+  last?: InputMaybe<Scalars['Int']>;
+};
+
 export type DocumentConnectionEdges = {
   __typename?: 'DocumentConnectionEdges';
   cursor?: Maybe<Scalars['String']>;
@@ -157,7 +187,7 @@ export type CollectionDocumentsArgs = {
   last?: InputMaybe<Scalars['Int']>;
 };
 
-export type DocumentNode = PageDocument | PostDocument;
+export type DocumentNode = PageDocument | PostDocument | MusicDocument | PhotoDocument;
 
 export type Page = {
   __typename?: 'Page';
@@ -190,7 +220,7 @@ export type PageConnection = Connection & {
 export type Post = {
   __typename?: 'Post';
   title?: Maybe<Scalars['String']>;
-  body?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
 };
 
 export type PostDocument = Node & Document & {
@@ -216,6 +246,67 @@ export type PostConnection = Connection & {
   edges?: Maybe<Array<Maybe<PostConnectionEdges>>>;
 };
 
+export type Music = {
+  __typename?: 'Music';
+  title?: Maybe<Scalars['String']>;
+  audioUrl?: Maybe<Scalars['String']>;
+  imageUrl?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
+};
+
+export type MusicDocument = Node & Document & {
+  __typename?: 'MusicDocument';
+  id: Scalars['ID'];
+  sys: SystemInfo;
+  data: Music;
+  form: Scalars['JSON'];
+  values: Scalars['JSON'];
+  dataJSON: Scalars['JSON'];
+};
+
+export type MusicConnectionEdges = {
+  __typename?: 'MusicConnectionEdges';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<MusicDocument>;
+};
+
+export type MusicConnection = Connection & {
+  __typename?: 'MusicConnection';
+  pageInfo?: Maybe<PageInfo>;
+  totalCount: Scalars['Int'];
+  edges?: Maybe<Array<Maybe<MusicConnectionEdges>>>;
+};
+
+export type Photo = {
+  __typename?: 'Photo';
+  title?: Maybe<Scalars['String']>;
+  photoCollectionUrl?: Maybe<Scalars['String']>;
+  body?: Maybe<Scalars['JSON']>;
+};
+
+export type PhotoDocument = Node & Document & {
+  __typename?: 'PhotoDocument';
+  id: Scalars['ID'];
+  sys: SystemInfo;
+  data: Photo;
+  form: Scalars['JSON'];
+  values: Scalars['JSON'];
+  dataJSON: Scalars['JSON'];
+};
+
+export type PhotoConnectionEdges = {
+  __typename?: 'PhotoConnectionEdges';
+  cursor?: Maybe<Scalars['String']>;
+  node?: Maybe<PhotoDocument>;
+};
+
+export type PhotoConnection = Connection & {
+  __typename?: 'PhotoConnection';
+  pageInfo?: Maybe<PageInfo>;
+  totalCount: Scalars['Int'];
+  edges?: Maybe<Array<Maybe<PhotoConnectionEdges>>>;
+};
+
 export type Mutation = {
   __typename?: 'Mutation';
   addPendingDocument: DocumentNode;
@@ -225,6 +316,10 @@ export type Mutation = {
   createPageDocument: PageDocument;
   updatePostDocument: PostDocument;
   createPostDocument: PostDocument;
+  updateMusicDocument: MusicDocument;
+  createMusicDocument: MusicDocument;
+  updatePhotoDocument: PhotoDocument;
+  createPhotoDocument: PhotoDocument;
 };
 
 
@@ -272,9 +367,35 @@ export type MutationCreatePostDocumentArgs = {
   params: PostMutation;
 };
 
+
+export type MutationUpdateMusicDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: MusicMutation;
+};
+
+
+export type MutationCreateMusicDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: MusicMutation;
+};
+
+
+export type MutationUpdatePhotoDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: PhotoMutation;
+};
+
+
+export type MutationCreatePhotoDocumentArgs = {
+  relativePath: Scalars['String'];
+  params: PhotoMutation;
+};
+
 export type DocumentMutation = {
   page?: InputMaybe<PageMutation>;
   post?: InputMaybe<PostMutation>;
+  music?: InputMaybe<MusicMutation>;
+  photo?: InputMaybe<PhotoMutation>;
 };
 
 export type PageMutation = {
@@ -283,12 +404,29 @@ export type PageMutation = {
 
 export type PostMutation = {
   title?: InputMaybe<Scalars['String']>;
-  body?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
+};
+
+export type MusicMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  audioUrl?: InputMaybe<Scalars['String']>;
+  imageUrl?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
+};
+
+export type PhotoMutation = {
+  title?: InputMaybe<Scalars['String']>;
+  photoCollectionUrl?: InputMaybe<Scalars['String']>;
+  body?: InputMaybe<Scalars['JSON']>;
 };
 
 export type PagePartsFragment = { __typename?: 'Page', body?: any | null | undefined };
 
-export type PostPartsFragment = { __typename?: 'Post', title?: string | null | undefined, body?: string | null | undefined };
+export type PostPartsFragment = { __typename?: 'Post', title?: string | null | undefined, body?: any | null | undefined };
+
+export type MusicPartsFragment = { __typename?: 'Music', title?: string | null | undefined, audioUrl?: string | null | undefined, imageUrl?: string | null | undefined, body?: any | null | undefined };
+
+export type PhotoPartsFragment = { __typename?: 'Photo', title?: string | null | undefined, photoCollectionUrl?: string | null | undefined, body?: any | null | undefined };
 
 export type GetPageDocumentQueryVariables = Exact<{
   relativePath: Scalars['String'];
@@ -307,12 +445,36 @@ export type GetPostDocumentQueryVariables = Exact<{
 }>;
 
 
-export type GetPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null | undefined, body?: string | null | undefined } } };
+export type GetPostDocumentQuery = { __typename?: 'Query', getPostDocument: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null | undefined, body?: any | null | undefined } } };
 
 export type GetPostListQueryVariables = Exact<{ [key: string]: never; }>;
 
 
-export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null | undefined, body?: string | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
+export type GetPostListQuery = { __typename?: 'Query', getPostList: { __typename?: 'PostConnection', totalCount: number, edges?: Array<{ __typename?: 'PostConnectionEdges', node?: { __typename?: 'PostDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Post', title?: string | null | undefined, body?: any | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
+
+export type GetMusicDocumentQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type GetMusicDocumentQuery = { __typename?: 'Query', getMusicDocument: { __typename?: 'MusicDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Music', title?: string | null | undefined, audioUrl?: string | null | undefined, imageUrl?: string | null | undefined, body?: any | null | undefined } } };
+
+export type GetMusicListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetMusicListQuery = { __typename?: 'Query', getMusicList: { __typename?: 'MusicConnection', totalCount: number, edges?: Array<{ __typename?: 'MusicConnectionEdges', node?: { __typename?: 'MusicDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Music', title?: string | null | undefined, audioUrl?: string | null | undefined, imageUrl?: string | null | undefined, body?: any | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
+
+export type GetPhotoDocumentQueryVariables = Exact<{
+  relativePath: Scalars['String'];
+}>;
+
+
+export type GetPhotoDocumentQuery = { __typename?: 'Query', getPhotoDocument: { __typename?: 'PhotoDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Photo', title?: string | null | undefined, photoCollectionUrl?: string | null | undefined, body?: any | null | undefined } } };
+
+export type GetPhotoListQueryVariables = Exact<{ [key: string]: never; }>;
+
+
+export type GetPhotoListQuery = { __typename?: 'Query', getPhotoList: { __typename?: 'PhotoConnection', totalCount: number, edges?: Array<{ __typename?: 'PhotoConnectionEdges', node?: { __typename?: 'PhotoDocument', id: string, sys: { __typename?: 'SystemInfo', filename: string, basename: string, breadcrumbs: Array<string>, path: string, relativePath: string, extension: string }, data: { __typename?: 'Photo', title?: string | null | undefined, photoCollectionUrl?: string | null | undefined, body?: any | null | undefined } } | null | undefined } | null | undefined> | null | undefined } };
 
 export const PagePartsFragmentDoc = gql`
     fragment PageParts on Page {
@@ -322,6 +484,21 @@ export const PagePartsFragmentDoc = gql`
 export const PostPartsFragmentDoc = gql`
     fragment PostParts on Post {
   title
+  body
+}
+    `;
+export const MusicPartsFragmentDoc = gql`
+    fragment MusicParts on Music {
+  title
+  audioUrl
+  imageUrl
+  body
+}
+    `;
+export const PhotoPartsFragmentDoc = gql`
+    fragment PhotoParts on Photo {
+  title
+  photoCollectionUrl
   body
 }
     `;
@@ -407,6 +584,88 @@ export const GetPostListDocument = gql`
   }
 }
     ${PostPartsFragmentDoc}`;
+export const GetMusicDocumentDocument = gql`
+    query getMusicDocument($relativePath: String!) {
+  getMusicDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...MusicParts
+    }
+  }
+}
+    ${MusicPartsFragmentDoc}`;
+export const GetMusicListDocument = gql`
+    query getMusicList {
+  getMusicList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...MusicParts
+        }
+      }
+    }
+  }
+}
+    ${MusicPartsFragmentDoc}`;
+export const GetPhotoDocumentDocument = gql`
+    query getPhotoDocument($relativePath: String!) {
+  getPhotoDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...PhotoParts
+    }
+  }
+}
+    ${PhotoPartsFragmentDoc}`;
+export const GetPhotoListDocument = gql`
+    query getPhotoList {
+  getPhotoList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...PhotoParts
+        }
+      }
+    }
+  }
+}
+    ${PhotoPartsFragmentDoc}`;
 export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) => Promise<R>
   export function getSdk<C>(requester: Requester<C>) {
     return {
@@ -421,6 +680,18 @@ export type Requester<C= {}> = <R, V>(doc: DocumentNode, vars?: V, options?: C) 
       },
     getPostList(variables?: GetPostListQueryVariables, options?: C): Promise<{data: GetPostListQuery, variables: GetPostListQueryVariables, query: string}> {
         return requester<{data: GetPostListQuery, variables: GetPostListQueryVariables, query: string}, GetPostListQueryVariables>(GetPostListDocument, variables, options);
+      },
+    getMusicDocument(variables: GetMusicDocumentQueryVariables, options?: C): Promise<{data: GetMusicDocumentQuery, variables: GetMusicDocumentQueryVariables, query: string}> {
+        return requester<{data: GetMusicDocumentQuery, variables: GetMusicDocumentQueryVariables, query: string}, GetMusicDocumentQueryVariables>(GetMusicDocumentDocument, variables, options);
+      },
+    getMusicList(variables?: GetMusicListQueryVariables, options?: C): Promise<{data: GetMusicListQuery, variables: GetMusicListQueryVariables, query: string}> {
+        return requester<{data: GetMusicListQuery, variables: GetMusicListQueryVariables, query: string}, GetMusicListQueryVariables>(GetMusicListDocument, variables, options);
+      },
+    getPhotoDocument(variables: GetPhotoDocumentQueryVariables, options?: C): Promise<{data: GetPhotoDocumentQuery, variables: GetPhotoDocumentQueryVariables, query: string}> {
+        return requester<{data: GetPhotoDocumentQuery, variables: GetPhotoDocumentQueryVariables, query: string}, GetPhotoDocumentQueryVariables>(GetPhotoDocumentDocument, variables, options);
+      },
+    getPhotoList(variables?: GetPhotoListQueryVariables, options?: C): Promise<{data: GetPhotoListQuery, variables: GetPhotoListQueryVariables, query: string}> {
+        return requester<{data: GetPhotoListQuery, variables: GetPhotoListQueryVariables, query: string}, GetPhotoListQueryVariables>(GetPhotoListDocument, variables, options);
       }
     };
   }

@@ -75,3 +75,81 @@ query getPostList {
     }
   }
 }
+
+query getMusicDocument($relativePath: String!) {
+  getMusicDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...MusicParts
+    }
+  }
+}
+
+query getMusicList {
+  getMusicList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...MusicParts
+        }
+      }
+    }
+  }
+}
+
+query getPhotoDocument($relativePath: String!) {
+  getPhotoDocument(relativePath: $relativePath) {
+    sys {
+      filename
+      basename
+      breadcrumbs
+      path
+      relativePath
+      extension
+    }
+    id
+    data {
+      ...PhotoParts
+    }
+  }
+}
+
+query getPhotoList {
+  getPhotoList {
+    totalCount
+    edges {
+      node {
+        id
+        sys {
+          filename
+          basename
+          breadcrumbs
+          path
+          relativePath
+          extension
+        }
+        data {
+          ...PhotoParts
+        }
+      }
+    }
+  }
+}

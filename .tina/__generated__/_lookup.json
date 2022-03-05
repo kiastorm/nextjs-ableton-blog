@@ -4,7 +4,9 @@
     "resolveType": "multiCollectionDocumentList",
     "collections": [
       "page",
-      "post"
+      "post",
+      "music",
+      "photo"
     ]
   },
   "Node": {
@@ -40,5 +42,29 @@
     "type": "PostConnection",
     "resolveType": "collectionDocumentList",
     "collection": "post"
+  },
+  "MusicDocument": {
+    "type": "MusicDocument",
+    "resolveType": "collectionDocument",
+    "collection": "music",
+    "createMusicDocument": "create",
+    "updateMusicDocument": "update"
+  },
+  "MusicConnection": {
+    "type": "MusicConnection",
+    "resolveType": "collectionDocumentList",
+    "collection": "music"
+  },
+  "PhotoDocument": {
+    "type": "PhotoDocument",
+    "resolveType": "collectionDocument",
+    "collection": "photo",
+    "createPhotoDocument": "create",
+    "updatePhotoDocument": "update"
+  },
+  "PhotoConnection": {
+    "type": "PhotoConnection",
+    "resolveType": "collectionDocumentList",
+    "collection": "photo"
   }
 }

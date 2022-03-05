@@ -1,0 +1,1 @@
+export const posts = [{"id":"hello","title":"This is a title"}]

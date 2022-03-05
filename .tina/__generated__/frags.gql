@@ -6,3 +6,16 @@ fragment PostParts on Post {
   title
   body
 }
+
+fragment MusicParts on Music {
+  title
+  audioUrl
+  imageUrl
+  body
+}
+
+fragment PhotoParts on Photo {
+  title
+  photoCollectionUrl
+  body
+}
