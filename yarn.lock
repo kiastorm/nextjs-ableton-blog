@@ -2201,10 +2201,10 @@
   resolved "https://registry.npmjs.org/@stitches/react/-/react-1.2.6.tgz"
   integrity sha512-gRVITYj8W4jJmoiVxWDv72yCvd12VvtUUAnTzs07EqmtvGCVgKZu3Dx0x5KVCcb0b6tfgvvNH2L84YrzdM4Mag==
 
-"@tinacms/auth@^0.50.2":
-  version "0.50.2"
-  resolved "https://registry.npmjs.org/@tinacms/auth/-/auth-0.50.2.tgz"
-  integrity sha512-5oBWtkXG8vu/W9txQrcIb7r2GC6XlgpPsO2EKdjGF4gTWZVlwah73OHqL/QogZWIbZ/4znPL1QkZVwGZuYURiw==
+"@tinacms/auth@^0.50.5":
+  version "0.50.5"
+  resolved "https://registry.yarnpkg.com/@tinacms/auth/-/auth-0.50.5.tgz#50950c8c5384dd6cdab4bcadd061815642c736fb"
+  integrity sha512-cXOLV3crifB4+qNO3XNWqpNOYjLwrfa1VVGbRYA67AvRrOrfS7qai0JhMjHzFbTlJW3Fdm46POlepOEStjn5mw==
 
 "@tinacms/cli@^0.60.0":
   version "0.60.0"
