@@ -39,7 +39,7 @@
     "@react-three/drei": "^8.8.1",
     "@react-three/fiber": "^7.0.26",
     "@stitches/react": "^1.2.5",
-    "@tinacms/auth": "^0.50.2",
+    "@tinacms/auth": "^1.0.3",
     "@types/body-scroll-lock": "^3.1.0",
     "@types/three": "^0.135.0",
     "babel-plugin-glsl": "^1.0.0",
